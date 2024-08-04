@@ -1,0 +1,60 @@
+.menu-container {
+    position: relative;
+}
+.menu-item {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+.menu-item:hover {
+    color: white;
+}
+.menu-background {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #52525b; /* bg-zinc-600 */
+    transition: all 0.3s ease;
+    z-index: 0;
+    opacity: 0;
+    border-radius: 10px;
+    border-bottom: 3px solid red; /* Menambahkan garis merah di bawah */
+}
+.fade-in {
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-out {
+animation: fadeOut 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+from {
+opacity: 0;
+}
+to {
+opacity: 1;
+}
+}
+
+@keyframes fadeOut {
+from {
+opacity: 1;
+}
+to {
+opacity: 0;
+}
+}
+
+.centered-dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-container {
+    margin-top: 30px;
+    width: 1230px;
+    padding: 1rem;
+    border-radius: 10px;
+}

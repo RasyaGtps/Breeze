@@ -11,60 +11,10 @@
 <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
 <!-- Scripts -->
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+@vite(['resources/css/app.css', 'resources/js/app.js','resources/css/dashboard.css', 'resources/js/dashboard.js'])
     </head>
-    <body class="bg-zinc-700 text-white fade-in">
-    <style>
-            .menu-container {
-                position: relative;
-            }
-            .menu-item {
-                position: relative;
-                z-index: 1;
-                transition: color 0.3s ease;
-            }
-            .menu-item:hover {
-                color: white;
-            }
-            .menu-background {
-                position: absolute;
-                height: 100%;
-                top: 0;
-                left: 0;
-                background-color: #52525b; /* bg-zinc-600 */
-                transition: all 0.3s ease;
-                z-index: 0;
-                opacity: 0;
-                border-radius: 10px;
-                border-bottom: 3px solid red; /* Menambahkan garis merah di bawah */
-            }
-            .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.fade-out {
-    animation: fadeOut 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-        </style>
-    <nav class="bg-zinc-700 border-b border-gray-100">
+    <body class="bg-zinc-800 text-white fade-in">
+    <nav class="bg-zinc-800 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
@@ -104,59 +54,16 @@
         </div>
     </div>
 </nav>
+<div class="centered-dashboard">
+        <div class="dashboard-container">
+            <x-dashboard-layout>
+                <div class="py-5">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    </div>
+                </div>
+            </x-dashboard-layout>
+        </div>
+    </div>
 
-<script>
-       document.addEventListener('DOMContentLoaded', function() {
-    const menuContainers = document.querySelectorAll('.menu-container');
-    
-    menuContainers.forEach(container => {
-        const menuItems = container.querySelectorAll('.menu-item');
-        const menuBackground = container.querySelector('.menu-background');
-        let isFirstHover = true;
-
-        menuItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                const itemRect = this.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-
-                if (isFirstHover) {
-                    menuBackground.style.transition = 'none';
-                    isFirstHover = false;
-                } else {
-                    menuBackground.style.transition = 'all 0.3s ease';
-                }
-
-                menuBackground.style.width = `${itemRect.width}px`;
-                menuBackground.style.transform = `translateX(${itemRect.left - containerRect.left}px)`;
-                menuBackground.style.opacity = '1';
-            });
-        });
-
-        container.addEventListener('mouseleave', function() {
-            menuBackground.style.opacity = '0';
-            isFirstHover = true;
-        });
-    });
-
-    // Add animation on link click
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-        if (link.href.includes('/menu5') || link.href.includes('/register')) {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = link.href;
-                }, 500); // Time matches the animation duration
-            });
-        }
-    });
-
-    // Remove the fade-out class after the page has fully loaded
-    window.addEventListener('pageshow', function() {
-        document.body.classList.remove('fade-out');
-    });
-});
-    </script>
 </body>
 </html>
